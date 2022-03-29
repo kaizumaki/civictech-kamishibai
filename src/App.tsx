@@ -17,7 +17,8 @@ function App() {
     const response: any = await axios.get(`https://api.openverse.engineering/v1/images/?q="${selectedKeyword}"&license=by,cc0&page_size=50`);
     const results = response.data.results;
     const url = results[getRandomNumber(results.length)].detail_url;
-    const targetItem: any = await axios.get(url);
+    const updatedURL = url.replace(/^http:\/\//i, 'https://');
+    const targetItem: any = await axios.get(updatedURL);
     setItemSrc(targetItem.data.url);
     setItemAttribution(targetItem.data.attribution);
   }
