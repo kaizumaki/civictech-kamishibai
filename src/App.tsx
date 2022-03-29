@@ -24,20 +24,35 @@ function App() {
 
   return (
     <div className="App">
-      <img src={itemSrc} alt="" />
-      <p>
-        {itemAttribution}
-      </p>
-      <button
-        onClick={() => handleChangeItem()}
-      >
-        Click me
-      </button>
-      <input
-        type="text"
-        value={keyword}
-        onChange={(e) => setKeyword(e.target.value)}
-      />
+      <div className="presentation">
+        <div className="presentation__image__outer">
+          <img className="presentation__image" src={itemSrc} alt="" />
+        </div>
+        <p className="presentation__text">
+          {itemAttribution}
+        </p>
+      </div>
+      <div className="form-container">
+        <div className="form-item">
+          <input
+            className="keyword-field"
+            type="text"
+            placeholder="Please input keyword."
+            value={keyword}
+            onChange={(e) => setKeyword(e.target.value)}
+          />
+        </div>
+        <div className="form-item">
+          <button
+            className="next-button"
+            type="button"
+            disabled={keyword === ''}
+            onClick={() => handleChangeItem()}
+          >
+            Next!
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
