@@ -37,7 +37,7 @@ function App() {
           <input
             className="keyword-field"
             type="text"
-            placeholder="Please input keyword."
+            placeholder="e.g. democracy, open source, blue sky"
             value={keyword}
             onChange={(e) => setKeyword(e.target.value)}
           />
