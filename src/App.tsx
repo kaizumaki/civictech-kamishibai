@@ -1,24 +1,43 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import axios from 'axios';
 import './App.css';
 
+const getRandomNumber = (max: number, min: number = 0): number => {
+  return Math.floor(Math.random() * (max - min) + min)
+};
+
 function App() {
+  const [keyword, setKeyword] = useState('');
+  const [itemSrc, setItemSrc] = useState('');
+  const [itemAttribution, setItemAttribution] = useState('');
+
+  async function handleChangeItem() {
+    const keywordArray = keyword.split(',');
+    const selectedKeyword = keywordArray[getRandomNumber(keywordArray.length)];
+    const response: any = await axios.get(`https://api.openverse.engineering/v1/images/?q="${selectedKeyword}"&license=by,cc0&page_size=50`);
+    const results = response.data.results;
+    const url = results[getRandomNumber(results.length)].detail_url;
+    const targetItem: any = await axios.get(url);
+    setItemSrc(targetItem.data.url);
+    setItemAttribution(targetItem.data.attribution);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <img src={itemSrc} alt="" />
+      <p>
+        {itemAttribution}
+      </p>
+      <button
+        onClick={() => handleChangeItem()}
+      >
+        Click me
+      </button>
+      <input
+        type="text"
+        value={keyword}
+        onChange={(e) => setKeyword(e.target.value)}
+      />
     </div>
   );
 }
