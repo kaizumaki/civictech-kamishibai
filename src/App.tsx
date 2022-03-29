@@ -13,7 +13,7 @@ function App() {
 
   async function handleChangeItem() {
     const keywordArray = keyword.split(',');
-    const selectedKeyword = keywordArray[getRandomNumber(keywordArray.length)];
+    const selectedKeyword = keywordArray[getRandomNumber(keywordArray.length)].trim();
     const response: any = await axios.get(`https://api.openverse.engineering/v1/images/?q="${selectedKeyword}"&license=by,cc0&page_size=50`);
     const results = response.data.results;
     const url = results[getRandomNumber(results.length)].detail_url;
