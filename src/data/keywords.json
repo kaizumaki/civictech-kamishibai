@@ -61,7 +61,7 @@
     },
     {
         "keyword-ja": "まちづくり",
-        "keyword-en": "City planning"
+        "keyword-en": "City Planning"
     },
     {
         "keyword-ja": "ウェルビーイング",
@@ -70,5 +70,13 @@
     {
         "keyword-ja": "デジタル",
         "keyword-en": "Digital"
+    },
+    {
+        "keyword-ja": "データ",
+        "keyword-en": "Data"
+    },
+    {
+        "keyword-ja": "人工知能",
+        "keyword-en": "Artificial Intelligence"
     }
 ]
